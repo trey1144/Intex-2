@@ -37,6 +37,10 @@ function LandingPage() {
          ></div>
          <div
            className="movie-card"
+           style={{ backgroundImage: "url('/images/About Time.jpg')" }}
+         ></div>
+         <div
+           className="movie-card"
            style={{ backgroundImage: "url('/images/Bright.jpg')" }}
          ></div>
          <div
