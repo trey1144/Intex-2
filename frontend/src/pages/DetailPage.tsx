@@ -8,7 +8,7 @@ function DetailPage() {
       <h2>Specific Movie</h2>
       <p>image</p>
       <h5>Movie details</h5>
-      <Footer />{' '}
+      <Footer />
     </>
   );
 }
