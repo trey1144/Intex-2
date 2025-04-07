@@ -1,3 +1,6 @@
+using CineNiche.API.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,19 +10,22 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+builder.Services.AddDbContext<MoviesContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("ConnectionStrings:MovieConnection")));
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
         policy =>
         {
-            policy.AllowWithOrigin("http://localhost:3000")
-                   .AllowAnyCredential()
+            policy.WithOrigins("http://localhost:3000")
+                   .AllowCredentials()
                    .AllowAnyMethod()
                    .AllowAnyHeader();
         });
 });
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
