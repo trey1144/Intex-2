@@ -55,7 +55,7 @@ namespace CineNiche.API.Controllers
             }
 
             // 📦 Pagination
-            var totalNumProjects = query.Count();
+            var totalNumMovies = query.Count();
 
             var results = query
                 .Skip((pageNum - 1) * pageSize)
@@ -65,8 +65,8 @@ namespace CineNiche.API.Controllers
             // 🎁 Return response
             var response = new
             {
-                Projects = results,
-                TotalNumProjects = totalNumProjects
+                Movies = results,
+                TotalNumMovies = totalNumMovies
             };
 
             return Ok(response);
