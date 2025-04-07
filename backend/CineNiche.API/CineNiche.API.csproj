@@ -24,4 +24,10 @@
     <Folder Include="Data\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Movies.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
