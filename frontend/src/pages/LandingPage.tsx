@@ -59,7 +59,7 @@ function LandingPage() {
           ></div>
         </div>
       </div>
-      <CookieConsent>
+      <CookieConsent buttonStyle={{ color: '#4e503b', fontSize: '13px' }}>
         This website uses cookies to enhance the user experience.
       </CookieConsent>
       <Footer />
