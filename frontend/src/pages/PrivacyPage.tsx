@@ -1,12 +1,20 @@
+import { useEffect } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import './PrivacyPage.css';
 
 function PrivacyPage() {
+  useEffect(() => {
+    // Add override class to <body> on mount
+    document.body.classList.add('static-body');
+
+    // Clean up on unmount
+    return () => document.body.classList.remove('static-body');
+  }, []);
+
   return (
     <>
       <Header />
-      <div className="page-container">
+      <div className="privacy-content">
         <h1>Privacy Policy</h1>
         <p>Effective Date: April 7, 2025</p>
 
@@ -17,7 +25,7 @@ function PrivacyPage() {
         </p>
 
         <h2>1. Information We Collect</h2>
-        <ul>
+        <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
           <li>
             <strong>Account Information:</strong> When you create an account, we
             collect your name, email address, and login credentials.
@@ -38,7 +46,7 @@ function PrivacyPage() {
         </ul>
 
         <h2>2. How We Use Your Information</h2>
-        <ul>
+        <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
           <li>To deliver and maintain a high-quality streaming experience.</li>
           <li>
             To offer personalized recommendations based on your preferences and
@@ -61,7 +69,7 @@ function PrivacyPage() {
         </p>
 
         <h2>5. Your Rights and Choices</h2>
-        <ul>
+        <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
           <li>You can update or delete your account at any time.</li>
           <li>You can opt out of promotional emails.</li>
           <li>You can request a copy of your stored data.</li>
