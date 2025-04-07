@@ -13,13 +13,14 @@ const AdminPage = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [editingMovie, setEditingMovie] = useState<Movie | null>(null);
-  
 
   useEffect(() => {
     const loadMovies = async () => {
       try {
         const data = await fetchMovies(pageSize, pageNum, []);
-        if (data) {
+        console.log('Fetched data:', data); // ✅ log right after fetch
+
+        if (data && Array.isArray(data.movies)) {
           const moviesWithCategories = data.movies.map((m) => ({
             ...m,
             categories: getCategories(m),
@@ -27,7 +28,9 @@ const AdminPage = () => {
           setMovies(moviesWithCategories);
           setTotalPages(Math.ceil(data.totalNumMovies / pageSize));
         } else {
-          setError('Failed to load movies.');
+          setError(
+            'Failed to load movies — movies is undefined or not an array.'
+          );
         }
       } catch (err) {
         setError((err as Error).message);
@@ -35,8 +38,8 @@ const AdminPage = () => {
         setLoading(false);
       }
     };
-  
-    loadMovies(); // ✅ Call the function here
+
+    loadMovies(); // ✅ call the async function
   }, [pageSize, pageNum]);
 
   const handleDelete = async (showId: string) => {

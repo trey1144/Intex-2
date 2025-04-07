@@ -1,13 +1,14 @@
 import { Movie } from "../types/Movie";
 
+// This matches what the backend returns (mapped from "projects" and "totalNumProjects")
 interface FetchMoviesResponse {
   movies: Movie[];
   totalNumMovies: number;
 }
 
-const API_URL =
-  "https://localhost:5000/api/Movie";
+const API_URL = "http://localhost:5000/api/Movie"; // 👈 Use HTTP or HTTPS based on your backend
 
+// ✅ Fetch movies with optional filtering by category
 export const fetchMovies = async (
   pageSize: number,
   pageNum: number,
@@ -28,16 +29,22 @@ export const fetchMovies = async (
       throw new Error("Failed to fetch movies");
     }
 
-    return await response.json();
+    const result = await response.json();
+
+    return {
+      movies: result.projects,               // 👈 map backend "projects" to "movies"
+      totalNumMovies: result.totalNumProjects,
+    };
   } catch (error) {
-    console.error("Error fetching movies: ", error);
+    console.error("Error fetching movies:", error);
     return undefined;
   }
 };
 
+// ✅ Add a new movie
 export const addMovie = async (newMovie: Movie): Promise<Movie> => {
   try {
-    const response = await fetch(`${API_URL}/AddMovie?`, {
+    const response = await fetch(`${API_URL}/AddMovie`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -53,23 +60,29 @@ export const addMovie = async (newMovie: Movie): Promise<Movie> => {
 
     return await response.json();
   } catch (error) {
-    console.error("Error adding movie", error);
+    console.error("Error adding movie:", error);
     throw error;
   }
 };
 
+// ✅ Update an existing movie
 export const updateMovie = async (
-  show_id: string,
+  showId: string,
   updatedMovie: Movie
 ): Promise<Movie> => {
   try {
-    const response = await fetch(`${API_URL}/UpdateMovie/${show_id}`, {
+    const response = await fetch(`${API_URL}/UpdateMovie/${showId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(updatedMovie),
     });
+
+    if (!response.ok) {
+      throw new Error("Failed to update movie");
+    }
+
     return await response.json();
   } catch (error) {
     console.error("Error updating movie:", error);
@@ -77,17 +90,18 @@ export const updateMovie = async (
   }
 };
 
-export const deleteMovie = async (show_id: string): Promise<void> => {
+// ✅ Delete a movie
+export const deleteMovie = async (showId: string): Promise<void> => {
   try {
-    const response = await fetch(`${API_URL}/DeleteMovie/${show_id}`, {
+    const response = await fetch(`${API_URL}/Delete/${showId}`, {
       method: "DELETE",
     });
 
     if (!response.ok) {
-      throw new Error("Failed to delete show");
+      throw new Error("Failed to delete movie");
     }
   } catch (error) {
-    console.error("Error deleting show:", error);
+    console.error("Error deleting movie:", error);
     throw error;
   }
 };
