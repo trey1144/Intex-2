@@ -59,6 +59,9 @@ function LandingPage() {
           ></div>
         </div>
       </div>
+      <CookieConsent>
+        This website uses cookies to enhance the user experience.
+      </CookieConsent>
       <Footer />
     </div>
   );
