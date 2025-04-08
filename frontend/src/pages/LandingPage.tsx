@@ -1,7 +1,7 @@
 import Footer from '../components/Footer';
 //import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
-import '../LandingPage.css';
+import './LandingPage.css';
 import CookieConsent from 'react-cookie-consent';
 
 function LandingPage() {
