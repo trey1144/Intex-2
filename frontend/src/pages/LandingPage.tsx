@@ -59,7 +59,28 @@ function LandingPage() {
           ></div>
         </div>
       </div>
-      <CookieConsent>
+      <CookieConsent
+        location="bottom"
+        buttonText="Got it"
+        cookieName="cineNicheCookieConsent"
+        style={{
+          background: '#101026', // match your page background
+          color: '#cfcfe4', // subtle text color
+          fontSize: '1rem',
+          padding: '1rem 2rem',
+        }}
+        buttonStyle={{
+          background: '#7c9aff', // soft blue (match your buttons)
+          color: '#fff',
+          fontWeight: '500',
+          fontSize: '1rem',
+          borderRadius: '8px',
+          padding: '10px 20px',
+          border: 'none',
+          cursor: 'pointer',
+        }}
+        expires={365}
+      >
         This website uses cookies to enhance the user experience.
       </CookieConsent>
       <Footer />
