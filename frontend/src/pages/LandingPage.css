@@ -1,0 +1,150 @@
+/* Landing Page Styles */
+@import url('https://fonts.googleapis.com/css2?family=Stardos+Stencil&display=swap');
+
+
+.landing-container {
+  background-color: #0f0f2d;
+  color: #fff;
+  font-family: 'Stardos Stencil', cursive;
+  min-height: 100vh;
+  padding: 0 20px;
+}
+
+.landing-container .landing-title {
+  font-size: 128px;
+  color: #CCD4FF;
+  /* ... */
+}
+
+.landing-container footer {
+  color: #aaa;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.landing-container * {
+  box-sizing: border-box;
+}
+
+
+.landing-content {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ text-align: center;
+ width: 100%;
+ max-width: 1000px;
+}
+
+
+.landing-title {
+ font-size: 128px;
+ font-weight: 700;
+ color: #CCD4FF;
+ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+ letter-spacing: 4px;
+ margin-bottom: 0px;
+ margin-top: 100px;
+ font-family: 'Stardos Stencil', cursive;
+}
+
+
+.button-group {
+ display: flex;
+ flex-direction: column;
+ gap: 20px;
+ align-items: center;
+ justify-content: center;
+}
+
+
+.primary-button, .secondary-button {
+ padding: 14px 32px;
+ border: none;
+ border-radius: 30px;
+ font-size: 18px;
+ font-weight: 600;
+ cursor: pointer;
+ width: 240px;
+ transition: all 0.3s ease;
+}
+
+
+.primary-button {
+ background-color: #5985DF;
+ color: white;
+}
+
+
+.primary-button:hover {
+ background-color: #406ac7;
+}
+
+
+.secondary-button {
+ background-color: transparent;
+ border: 2px solid #5985DF;
+ color: #5985DF;
+}
+
+
+.secondary-button:hover {
+ background-color: #5985DF;
+ color: white;
+}
+
+
+footer {
+ width: 100%;
+ text-align: center;
+ padding: 20px;
+ font-size: 14px;
+ color: #aaa;
+ background: rgba(0, 0, 0, 0.2);
+ position: relative;
+ bottom: 0;
+}
+
+
+footer a {
+ color: #aaa;
+ text-decoration: underline;
+}
+
+
+footer a:hover {
+ color: #fff;
+}
+
+
+.carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 40px 0;
+    width: 100%;
+    max-width: 700px; /* 👈 restricts visible area */
+    justify-content: flex-start;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  .carousel::-webkit-scrollbar {
+   display: none;
+ }
+ .movie-card {
+    position: relative;
+    width: 140px; /* smaller width */
+    height: 210px; /* smaller height */
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .movie-card::after {
+   content: "";
+   position: absolute;
+   inset: 0;
+   background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+ }

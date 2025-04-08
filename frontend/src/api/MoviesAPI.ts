@@ -1,12 +1,11 @@
-import { Movie } from "../types/Movie";
+import { Movie } from '../types/Movie';
 
-// This matches what the backend returns (mapped from "projects" and "totalNumProjects")
 interface FetchMoviesResponse {
   movies: Movie[];
   totalNumMovies: number;
 }
 
-const API_URL = "http://localhost:5000/api/Movie"; // 👈 Use HTTP or HTTPS based on your backend
+const API_URL = 'https://localhost:5000/api/Movie';
 
 // ✅ Fetch movies with optional filtering by category
 export const fetchMovies = async (
@@ -17,26 +16,26 @@ export const fetchMovies = async (
   try {
     const categoryParams = selectedCategories
       .map((cat) => `movieTypes=${encodeURIComponent(cat)}`)
-      .join("&");
+      .join('&');
 
     const response = await fetch(
-      `${API_URL}/AllMovies?pageSize=${pageSize}&pageNum=${pageNum}${
-        selectedCategories.length ? `&${categoryParams}` : ""
-      }`
+      `${API_URL}/AllMovies?pageSize=${pageSize}&pageNum=${pageNum}${selectedCategories.length ? `&${categoryParams}` : ''}`
     );
 
     if (!response.ok) {
-      throw new Error("Failed to fetch movies");
+      throw new Error('Failed to fetch movies');
     }
 
     const result = await response.json();
 
+    console.log('Fetched response from backend:', result);
+
     return {
-      movies: result.projects,               // 👈 map backend "projects" to "movies"
-      totalNumMovies: result.totalNumProjects,
+      movies: result.movies,
+      totalNumMovies: result.totalNumMovies,
     };
   } catch (error) {
-    console.error("Error fetching movies:", error);
+    console.error('Error fetching movies:', error);
     return undefined;
   }
 };
@@ -45,22 +44,22 @@ export const fetchMovies = async (
 export const addMovie = async (newMovie: Movie): Promise<Movie> => {
   try {
     const response = await fetch(`${API_URL}/AddMovie`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(newMovie),
     });
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error("❌ Backend responded with:", response.status, errorText);
-      throw new Error("Failed to add movie");
+      console.error('❌ Backend responded with:', response.status, errorText);
+      throw new Error('Failed to add movie');
     }
 
     return await response.json();
   } catch (error) {
-    console.error("Error adding movie:", error);
+    console.error('Error adding movie:', error);
     throw error;
   }
 };
@@ -72,20 +71,20 @@ export const updateMovie = async (
 ): Promise<Movie> => {
   try {
     const response = await fetch(`${API_URL}/UpdateMovie/${showId}`, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(updatedMovie),
     });
 
     if (!response.ok) {
-      throw new Error("Failed to update movie");
+      throw new Error('Failed to update movie');
     }
 
     return await response.json();
   } catch (error) {
-    console.error("Error updating movie:", error);
+    console.error('Error updating movie:', error);
     throw error;
   }
 };
@@ -94,14 +93,14 @@ export const updateMovie = async (
 export const deleteMovie = async (showId: string): Promise<void> => {
   try {
     const response = await fetch(`${API_URL}/Delete/${showId}`, {
-      method: "DELETE",
+      method: 'DELETE',
     });
 
     if (!response.ok) {
-      throw new Error("Failed to delete movie");
+      throw new Error('Failed to delete movie');
     }
   } catch (error) {
-    console.error("Error deleting movie:", error);
+    console.error('Error deleting movie:', error);
     throw error;
   }
 };
