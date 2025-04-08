@@ -1,0 +1,16 @@
+.background {
+  background: linear-gradient(
+    180deg,
+    rgba(12, 12, 17, 0.96) 25.96%,
+    rgba(83, 84, 119, 0.96) 100%
+  );
+}
+
+.title {
+  display: flex;
+  width: 660px;
+  height: 165px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+}

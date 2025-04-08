@@ -58,11 +58,11 @@ const AdminPage = () => {
       alert('Failed to delete Movie. Please try again');
     }
   };
-
-  if (loading) return <p className="text-center mt-4">⏳ Loading movies...</p>;
-  if (error)
-    return <p className="text-center text-danger mt-4">❌ Error: {error}</p>;
-
+  if (loading) return <p>loading movies...</p>;
+  if (error) return <p className="text-red-500">Error: {error}</p>;
+  if (editingMovie) {
+    console.log(editingMovie);
+  }
   return (
     <>
       <div className="admin-reset">

@@ -1,7 +1,8 @@
 import Footer from '../components/Footer';
-import Header from '../components/Header';
+//import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
-import './LandingPage.css';
+import '../LandingPage.css';
+import CookieConsent from 'react-cookie-consent';
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -35,6 +36,10 @@ function LandingPage() {
           ></div>
           <div
             className="movie-card"
+            style={{ backgroundImage: "url('/images/About Time.jpg')" }}
+          ></div>
+          <div
+            className="movie-card"
             style={{ backgroundImage: "url('/images/Bright.jpg')" }}
           ></div>
           <div
@@ -54,6 +59,30 @@ function LandingPage() {
           ></div>
         </div>
       </div>
+      <CookieConsent
+        location="bottom"
+        buttonText="Got it"
+        cookieName="cineNicheCookieConsent"
+        style={{
+          background: '#101026', // match your page background
+          color: '#cfcfe4', // subtle text color
+          fontSize: '1rem',
+          padding: '1rem 2rem',
+        }}
+        buttonStyle={{
+          background: '#7c9aff', // soft blue (match your buttons)
+          color: '#fff',
+          fontWeight: '500',
+          fontSize: '1rem',
+          borderRadius: '8px',
+          padding: '10px 20px',
+          border: 'none',
+          cursor: 'pointer',
+        }}
+        expires={365}
+      >
+        This website uses cookies to enhance the user experience.
+      </CookieConsent>
       <Footer />
     </div>
   );
