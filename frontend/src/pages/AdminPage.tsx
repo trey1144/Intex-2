@@ -56,6 +56,9 @@ const AdminPage = () => {
   };
   if (loading) return <p>loading movies...</p>;
   if (error) return <p className="text-red-500">Error: {error}</p>;
+  if (editingMovie) {
+    console.log(editingMovie);
+  }
   return (
     <>
       <Header />
